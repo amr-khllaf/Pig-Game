@@ -189,3 +189,7 @@ It can shrink but won't grow unless other styles modify the default flex-grow va
   font-weight: 700;
   color: #c7365f;
 }
+
+.hidden {
+  display: none;
+}
