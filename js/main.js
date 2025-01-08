@@ -14,16 +14,32 @@ const btnRoll = document.querySelector(".btn--roll");
 const btnHold = document.querySelector(".btn--hold");
 
 //* starting Condtitions
-score0El.textContent = 0;
+// score0El.textContent = 0;
 console.log(typeof score0El.textContent); //^ String ==> cause js will convert them to string to show them in screen
-score1El.textContent = 0;
-diceEl.classList.add("hidden"); //! To hide Dice at the start of game beginning
+// score1El.textContent = 0;
+// diceEl.classList.add("hidden"); //! To hide Dice at the start of game beginning
 
-//^ Hold the Scores of P1 and P2 by index 0 and index 1
-const scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let playing = true;
+let scores, currentScore, activePlayer, playing; //^ I have defined them outisde the function due to the scoped definition
+const init = function () {
+  //^ Hold the Scores of P1 and P2 by index 0 and index 1
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
+
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+
+  diceEl.classList.add("hidden");
+  player0El.classList.remove("player--winner");
+  player1El.classList.remove("player--winner");
+  player0El.classList.add("player--active");
+  player1El.classList.remove("player--winner");
+};
+
+init();
 const switchPlayer = function () {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
   activePlayer = activePlayer === 0 ? 1 : 0; //* Reassign the active player
@@ -89,3 +105,7 @@ btnHold.addEventListener("click", function () {
     }
   }
 });
+
+//* Holding NewGame Btn Functionality
+
+btnNew.addEventListener("click", init); //! This mean the js will call the function when i clicked on the btn
